@@ -26,6 +26,12 @@ namespace Mc2.CrudTest.WebApi.Controllers
             return Ok(await _mediator.Send(request: new GetAllCustomersQuery(requestCustomerDto)));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await _mediator.Send(request: new GetCustomerByIdQuery(id)));
+        }
+
        
     }
 }
