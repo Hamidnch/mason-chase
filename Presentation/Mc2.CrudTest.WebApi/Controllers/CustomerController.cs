@@ -1,7 +1,6 @@
 ﻿using Mc2.CrudTest.Application.Cqrs.Customers.Commands;
 using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
 using Mc2.CrudTest.Application.Cqrs.Customers.Events;
-using Mc2.CrudTest.Application.Cqrs.Customers.Notifications;
 using Mc2.CrudTest.Application.Cqrs.Customers.Queries;
 using Mc2.CrudTest.WebApi.Helpers;
 using MediatR;
