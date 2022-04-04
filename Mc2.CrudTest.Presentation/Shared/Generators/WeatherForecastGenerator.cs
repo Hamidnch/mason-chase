@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Mc2.CrudTest.Domain.Generators
+namespace Mc2.CrudTest.Shared.Generators
 {
     public static class WeatherForecastGenerator
     {
@@ -10,10 +10,10 @@ namespace Mc2.CrudTest.Domain.Generators
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
-        
+
         public static List<WeatherForecast> GenerateWeatherForecast()
         {
-            
+
             return Enumerable.Range(1, 15).Select((index) =>
                 {
                     Random rng = new();
@@ -24,6 +24,6 @@ namespace Mc2.CrudTest.Domain.Generators
                         Summary = Summaries[rng.Next(Summaries.Length)]
                     };
                 }).ToList();
-        } 
+        }
     }
 }

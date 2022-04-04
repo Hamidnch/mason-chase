@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Mc2.CrudTest.Domain
+namespace Mc2.CrudTest.Shared
 {
     public class WeatherForecast
     {
