@@ -5,10 +5,10 @@ namespace Mc2.CrudTest.Application.Cqrs.Customers.Events
 {
     public class CreateCustomerEvent : INotification
     {
-        public string Email { get; set; }
-        public CreateCustomerEvent(string email)
+        public int Id { get; set; }
+        public CreateCustomerEvent(int id)
         {
-            this.Email = email;
+            this.Id = id;
         }
 
         public class CreateCustomerEmailSenderHandler : INotificationHandler<CreateCustomerEvent>
@@ -31,7 +31,7 @@ namespace Mc2.CrudTest.Application.Cqrs.Customers.Events
 
             public Task Handle(CreateCustomerEvent notification, CancellationToken cancellationToken)
             {
-                _logger.LogInformation($"New customer has been created with this email: {notification.Email}");
+                _logger.LogInformation($"New customer has been created with Id: {notification.Id}");
 
                 return Task.CompletedTask;
             }
