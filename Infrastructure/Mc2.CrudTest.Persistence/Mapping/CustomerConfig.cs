@@ -16,6 +16,7 @@ namespace Mc2.CrudTest.Persistence.Mapping
             builder.Property(x => x.Firstname).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Lastname).HasMaxLength(150).IsRequired();
             builder.Property(x => x.PhoneNumber).HasMaxLength(15);
+            builder.Property(x => x.BankAccountNumber).HasMaxLength(50);
 
             builder.HasData(
                 new Customer()
