@@ -37,7 +37,14 @@ namespace Mc2.CrudTest.WebApi.Controllers
         {
             return Ok(await _mediator.Send(request: new CreateCustomerCommand(CustomerDto: customerDto)));
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, CustomerDto customerDto)
+        {
+            customerDto.Id = id;
+            return Ok(await _mediator.Send(request: new UpdateCustomerCommand(CustomerDto: customerDto)));
+        }
 
-        
+   
+
     }
 }
