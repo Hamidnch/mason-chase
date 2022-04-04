@@ -32,6 +32,12 @@ namespace Mc2.CrudTest.WebApi.Controllers
             return Ok(await _mediator.Send(request: new GetCustomerByIdQuery(id)));
         }
 
-       
+        [HttpPost]
+        public async Task<IActionResult> Create(CustomerDto customerDto)
+        {
+            return Ok(await _mediator.Send(request: new CreateCustomerCommand(CustomerDto: customerDto)));
+        }
+
+        
     }
 }
