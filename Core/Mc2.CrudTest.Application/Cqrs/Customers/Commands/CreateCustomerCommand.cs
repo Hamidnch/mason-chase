@@ -36,7 +36,7 @@ namespace Mc2.CrudTest.Application.Cqrs.Customers.Commands
                 CustomerDto? response = await _customerService.CreateAsync(request.CustomerDto);
                 // Raising Event ...
                 await _mediator.Publish(
-                    new CreateCustomerEvent(response?.Email ?? string.Empty), cancellationToken);
+                    new CreateCustomerEvent(id: response.Id), cancellationToken);
                 await _mediator.Publish(
                     new EmailNotification("Hamidnch2007@gmail.com",
                     $"New customer with email {response?.Email} created."), cancellationToken);
