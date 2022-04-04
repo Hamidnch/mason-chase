@@ -55,7 +55,7 @@ namespace Mc2.CrudTest.Application.Cqrs.Customers.Services
 
         public async Task<CustomerDto> GetByIdAsync(int id)
         {
-            return _mapper.Map<CustomerDto>(await _customerRepository.Table
+            return _mapper.Map<CustomerDto>(await _customerRepository.Table.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id));
         }
 
