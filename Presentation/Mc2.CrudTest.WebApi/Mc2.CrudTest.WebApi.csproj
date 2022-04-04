@@ -14,4 +14,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Mc2.CrudTest.WebFramework\Mc2.CrudTest.WebFramework.csproj" />
+  </ItemGroup>
+
 </Project>
