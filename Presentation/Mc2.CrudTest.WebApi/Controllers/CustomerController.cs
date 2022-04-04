@@ -44,7 +44,11 @@ namespace Mc2.CrudTest.WebApi.Controllers
             return Ok(await _mediator.Send(request: new UpdateCustomerCommand(CustomerDto: customerDto)));
         }
 
-   
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _mediator.Send(request: new DeleteCustomerCommand(Id: id)));
+        }
 
     }
 }
