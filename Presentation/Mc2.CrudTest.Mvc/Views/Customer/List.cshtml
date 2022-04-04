@@ -1,0 +1,79 @@
+﻿@model CustomerListModel
+@{
+    ViewData["Title"] = "customer list";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col">
+        <h1>Players</h1>
+    </div>
+    <div class="col text-right">
+        <a asp-action="Create" class="btn btn-success">Create New</a>
+    </div>
+</div>
+ 
+<br/>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => Model[0].Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[1].Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[1].Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].BankAccountNumber)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (CustomerModel customer in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => customer.BankAccountNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", 
+                    new { id = customer.Id }, new { @class = "btn btn-primary" })  
+                @Html.ActionLink("Details", "Details", 
+                    new { id=customer.Id }, new { @class = "btn btn-secondary" })  
+                @Html.ActionLink("Delete", "Delete", 
+                    new { id=customer.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
