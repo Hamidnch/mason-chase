@@ -25,7 +25,7 @@ namespace Mc2.CrudTest.Persistence.Services
         #endregion Ctor
         public DbSet<T> Get => _dbSet;
 
-        public IQueryable<T> Table => _dbSet.AsQueryable();
+        public IQueryable<T> Table => _dbSet.AsNoTracking().AsQueryable();
 
         public IReadOnlyList<T> GetAll(bool trackChanges = true)
         {
@@ -66,6 +66,7 @@ namespace Mc2.CrudTest.Persistence.Services
             try
             {
                 _dbSet.Update(entity);
+
             }
             catch (Exception ex)
             {
