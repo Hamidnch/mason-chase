@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Mc2.CrudTest.Application.Cqrs.Customers.Commands;
 using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
+using Mc2.CrudTest.Application.Cqrs.Customers.Events;
 using Mc2.CrudTest.Application.Cqrs.Customers.Queries;
 using Mc2.CrudTest.WebFramework.Models;
 using MediatR;
@@ -110,6 +111,7 @@ namespace Mc2.CrudTest.Mvc.Controllers
         {
             try
             {
+                await _mediator.Publish(new CreateCustomerEvent(id: id));
                 await _mediator.Send(new DeleteCustomerCommand(id));
             }
             catch (Exception ex)
