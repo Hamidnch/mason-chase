@@ -46,6 +46,7 @@ namespace Mc2.CrudTest.WebFramework.Models
         /// <summary>
         /// Bank account number of customer
         /// </summary>
+        [RegularExpression("((\\d{4})-){3}\\d{4}", ErrorMessage = "Invalid account number")]
         public string? BankAccountNumber { get; set; }
     }
 }
