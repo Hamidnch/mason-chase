@@ -16,6 +16,16 @@ namespace Mc2.CrudTest.WebApi.Controllers
             _mediator = mediator;
         }
 
- 
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string? searchText)
+        {
+            RequestCustomerDto requestCustomerDto = new RequestCustomerDto
+            {
+                SearchText = searchText
+            };
+            return Ok(await _mediator.Send(request: new GetAllCustomersQuery(requestCustomerDto)));
+        }
+
+       
     }
 }
