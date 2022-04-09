@@ -1,9 +1,9 @@
-﻿using Mc2.CrudTest.Domain.Validators;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mc2.CrudTest.Domain.Validators;
 using Xunit;
 
-namespace Mc2.CrudTest.AcceptanceTests
+namespace Mc2.CrudTest.XUnit
 {
+
     public class MobileValidatorTest
     {
         [Theory]
@@ -14,8 +14,10 @@ namespace Mc2.CrudTest.AcceptanceTests
         public void MobileValidatorTest_ExpectedResult(string phoneNumber, bool expectedResult)
         {
             bool testResult = MobileValidator.Validate(phoneNumber);
-
-            Assert.Equals(expectedResult, testResult);
+            Assert.True(testResult);
+            Assert.Equal(expectedResult, testResult);
+            //Assert.Equals(expectedResult, testResult);
         }
     }
+    
 }
