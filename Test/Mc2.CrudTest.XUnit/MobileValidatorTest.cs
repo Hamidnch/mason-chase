@@ -3,7 +3,6 @@ using Xunit;
 
 namespace Mc2.CrudTest.XUnit
 {
-
     public class MobileValidatorTest
     {
         [Theory]
@@ -14,7 +13,7 @@ namespace Mc2.CrudTest.XUnit
         public void MobileValidatorTest_ExpectedResult(string phoneNumber, bool expectedResult)
         {
             bool testResult = MobileValidator.Validate(phoneNumber);
-            Assert.True(testResult);
+            //Assert.True(testResult);
             Assert.Equal(expectedResult, testResult);
             //Assert.Equals(expectedResult, testResult);
         }
