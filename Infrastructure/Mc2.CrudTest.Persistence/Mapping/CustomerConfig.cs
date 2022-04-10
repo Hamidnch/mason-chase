@@ -28,7 +28,6 @@ namespace Mc2.CrudTest.Persistence.Mapping
                     DateOfBirth = new DateTime(1981, 8, 10),
                     PhoneNumber = "09124820700",
                     BankAccountNumber = "123456"
-
                 },
             new Customer()
             {
@@ -39,7 +38,6 @@ namespace Mc2.CrudTest.Persistence.Mapping
                 DateOfBirth = new DateTime(2001, 5, 5),
                 PhoneNumber = "09123526532",
                 BankAccountNumber = "3251388"
-
             });
         }
     }

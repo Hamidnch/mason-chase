@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using Mc2.CrudTest.Common.Helpers;
 using System.Text.RegularExpressions;
 
 namespace Mc2.CrudTest.Domain.Validators
@@ -9,26 +9,16 @@ namespace Mc2.CrudTest.Domain.Validators
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
-            
+
             email = email.Trim().ToLower();
 
             try
             {
                 // Normalize the domain
-                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-                    RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-                // Examines the domain part of the email and normalizes it.
-                string DomainMapper(Match match)
-                {
-                    // Use IdnMapping class to convert Unicode domain names.
-                    IdnMapping idn = new IdnMapping();
-
-                    // Pull out and process domain name (throws ArgumentException on invalid)
-                    string domainName = idn.GetAscii(match.Groups[2].Value);
-
-                    return match.Groups[1].Value + domainName;
-                }
+                email = Regex.Replace(email, @"(@)(.+)$",
+                    CommonHelper.DomainMapper,
+                    RegexOptions.None,
+                    TimeSpan.FromMilliseconds(200));
             }
             catch (RegexMatchTimeoutException e)
             {

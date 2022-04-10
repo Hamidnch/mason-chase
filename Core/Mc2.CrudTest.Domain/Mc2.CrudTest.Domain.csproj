@@ -10,4 +10,8 @@
     <PackageReference Include="libphonenumber-csharp" Version="8.12.45" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mc2.CrudTest.Common\Mc2.CrudTest.Common.csproj" />
+  </ItemGroup>
+
 </Project>
