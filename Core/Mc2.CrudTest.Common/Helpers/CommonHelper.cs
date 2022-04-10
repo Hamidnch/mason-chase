@@ -18,7 +18,7 @@ namespace Mc2.CrudTest.Common.Helpers
             return match.Groups[1].Value + domainName;
         }
 
-        public static bool IsValidMobileNumber(string phoneNumber)
+        public static bool IsValidMobileNumber(this string phoneNumber)
         {
             PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.GetInstance();
             PhoneNumber p = phoneNumberUtil.Parse(phoneNumber, null);
@@ -34,6 +34,5 @@ namespace Mc2.CrudTest.Common.Helpers
             }
             return isValidNumber && isMobile;
         }
-
     }
 }

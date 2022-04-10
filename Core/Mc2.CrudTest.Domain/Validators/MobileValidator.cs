@@ -6,6 +6,6 @@ public static class MobileValidator
 {
     public static bool Validate(string phoneNumber)
     {
-        return CommonHelper.IsValidMobileNumber(phoneNumber: phoneNumber);
+        return phoneNumber.IsValidMobileNumber();
     }
 }
