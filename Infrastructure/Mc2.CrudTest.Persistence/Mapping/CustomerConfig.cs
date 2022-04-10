@@ -15,7 +15,7 @@ namespace Mc2.CrudTest.Persistence.Mapping
             builder.HasIndex(x => x.Email).HasDatabaseName("IX_Mc2_Email").IsUnique();
             builder.Property(x => x.Firstname).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Lastname).HasMaxLength(150).IsRequired();
-            builder.Property(x => x.PhoneNumber).HasMaxLength(15);
+            builder.Property(x => x.PhoneNumber).HasConversion<ulong>();
             builder.Property(x => x.BankAccountNumber).HasMaxLength(50);
 
             builder.HasData(
@@ -28,7 +28,6 @@ namespace Mc2.CrudTest.Persistence.Mapping
                     DateOfBirth = new DateTime(1981, 8, 10),
                     PhoneNumber = "09124820700",
                     BankAccountNumber = "123456"
-
                 },
             new Customer()
             {
@@ -39,7 +38,6 @@ namespace Mc2.CrudTest.Persistence.Mapping
                 DateOfBirth = new DateTime(2001, 5, 5),
                 PhoneNumber = "09123526532",
                 BankAccountNumber = "3251388"
-
             });
         }
     }

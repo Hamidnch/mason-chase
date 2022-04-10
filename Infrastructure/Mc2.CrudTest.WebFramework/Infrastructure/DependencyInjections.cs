@@ -1,14 +1,20 @@
-﻿using Mc2.CrudTest.Application.Cqrs.Customers.Services;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using IbanNet.DependencyInjection.ServiceProvider;
+using Mc2.CrudTest.Application.Cqrs.Customers.Behaviors;
+using Mc2.CrudTest.Application.Cqrs.Customers.Queries;
+using Mc2.CrudTest.Application.Cqrs.Customers.Services;
 using Mc2.CrudTest.Application.Interfaces;
 using Mc2.CrudTest.Persistence.Context;
 using Mc2.CrudTest.Persistence.Services;
+using Mc2.CrudTest.WebFramework.Models;
+using Mc2.CrudTest.WebFramework.Validators;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Mc2.CrudTest.Application.Cqrs.Customers.Behaviors;
-using Mc2.CrudTest.Application.Cqrs.Customers.Queries;
+using Mc2.CrudTest.Domain.Entities;
 
 namespace Mc2.CrudTest.WebFramework.Infrastructure
 {
@@ -27,6 +33,10 @@ namespace Mc2.CrudTest.WebFramework.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped(typeof(IMc2Repository<>), typeof(Mc2Repository<>));
             services.AddScoped<ICustomerService, CustomerService>();
+
+            services.AddIbanNet();
+            services.AddTransient<IValidator<Customer>, CustomerValidator>();
+            services.AddFluentValidation();
 
             return services;
         }
