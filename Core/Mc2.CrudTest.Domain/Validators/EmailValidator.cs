@@ -33,10 +33,6 @@ namespace Mc2.CrudTest.Domain.Validators
             try
             {
                 return MailAddress.TryCreate(email, out _);
-
-                //return Regex.IsMatch(email,
-                //    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                //    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
             }
             catch (RegexMatchTimeoutException)
             {
