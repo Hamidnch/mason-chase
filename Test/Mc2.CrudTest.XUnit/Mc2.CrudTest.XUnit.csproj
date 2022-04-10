@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Mc2.CrudTest.Domain\Mc2.CrudTest.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Mc2.CrudTest.WebFramework\Mc2.CrudTest.WebFramework.csproj" />
   </ItemGroup>
 
 </Project>
