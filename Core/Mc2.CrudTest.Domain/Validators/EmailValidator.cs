@@ -1,4 +1,5 @@
 ﻿using Mc2.CrudTest.Common.Helpers;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace Mc2.CrudTest.Domain.Validators
@@ -20,20 +21,22 @@ namespace Mc2.CrudTest.Domain.Validators
                     RegexOptions.None,
                     TimeSpan.FromMilliseconds(200));
             }
-            catch (RegexMatchTimeoutException e)
+            catch (RegexMatchTimeoutException)
             {
                 return false;
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 return false;
             }
 
             try
             {
-                return Regex.IsMatch(email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+                return MailAddress.TryCreate(email, out _);
+
+                //return Regex.IsMatch(email,
+                //    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                //    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
             }
             catch (RegexMatchTimeoutException)
             {
