@@ -6,35 +6,29 @@ namespace Mc2.CrudTest.Common.Helpers
 {
     public static class CommonHelper
     {
-        private static readonly PhoneNumberUtil? PhoneNumberUtil = PhoneNumberUtil.GetInstance();
+        private static readonly PhoneNumberUtil PhoneNumberUtil = PhoneNumberUtil.GetInstance();
 
         #region Private Methods
 
-
-        private static PhoneNumber GetStandardPhoneNumber(this string phoneNumber)
+        private static PhoneNumber ParseToPhoneNumber(this string phoneNumber)
         {
-            PhoneNumber? p = PhoneNumberUtil?.Parse(phoneNumber, null)!;
-            return p;
+            return PhoneNumberUtil.Parse(phoneNumber, null);
         }
 
         private static bool IsValidMobileType(this PhoneNumber p)
         {
-            PhoneNumberType? numberType = PhoneNumberUtil?.GetNumberType(p);
-
-            string? phoneNumberType = numberType.ToString();
-
-            return !string.IsNullOrEmpty(phoneNumberType) && phoneNumberType == "MOBILE";
+            PhoneNumberType numberType = PhoneNumberUtil.GetNumberType(p);
+            return numberType == PhoneNumberType.MOBILE;
         }
+
         #endregion Private Methods
+
+
+        #region Public Methods
 
         public static bool IsValidMobileNumber(this string phoneNumber)
         {
-            if (PhoneNumberUtil == null)
-            {
-                return false;
-            }
-
-            PhoneNumber? p = phoneNumber.GetStandardPhoneNumber();
+            PhoneNumber p = phoneNumber.ParseToPhoneNumber();
 
             bool isValidNumber = PhoneNumberUtil.IsValidNumber(p);
 
@@ -42,7 +36,7 @@ namespace Mc2.CrudTest.Common.Helpers
 
             return isValidNumber && isValidMobile;
         }
-        
+
         // Examines the domain part of the email and normalizes it.
         public static string DomainMapper(Match match)
         {
@@ -54,5 +48,7 @@ namespace Mc2.CrudTest.Common.Helpers
 
             return match.Groups[1].Value + domainName;
         }
+
+        #endregion Public Methods
     }
 }
