@@ -41,7 +41,7 @@ namespace Mc2.CrudTest.Persistence.Services
         {
             if (id is null or 0)
                 return null;
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id.Value);      
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id.Value);
         }
 
         public async Task<IReadOnlyList<T>> GetPagedAsync(int pageNumber, int pageSize)
@@ -66,7 +66,6 @@ namespace Mc2.CrudTest.Persistence.Services
             try
             {
                 _dbSet.Update(entity);
-
             }
             catch (Exception ex)
             {
@@ -76,7 +75,6 @@ namespace Mc2.CrudTest.Persistence.Services
             {
                 await _dbContext.SaveChangesAsync();
             }
-
         }
         public async Task DeleteAsync(T entity)
         {

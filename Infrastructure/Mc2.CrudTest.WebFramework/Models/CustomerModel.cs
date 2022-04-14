@@ -42,7 +42,7 @@ namespace Mc2.CrudTest.WebFramework.Models
         /// </summary>
         [EmailAddress]
         public string? Email { get; set; }
-        
+
         /// <summary>
         /// Bank account number of customer
         /// </summary>
