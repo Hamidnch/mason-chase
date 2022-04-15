@@ -1,7 +1,7 @@
 ﻿using Mc2.CrudTest.Application.Cqrs.Customers.Commands;
-using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
 using Mc2.CrudTest.Application.Cqrs.Customers.Events;
 using Mc2.CrudTest.Application.Cqrs.Customers.Queries;
+using Mc2.CrudTest.Domain.Dtos.Customers;
 using Mc2.CrudTest.WebApi.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,7 @@ namespace Mc2.CrudTest.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             return Ok(await _mediator.Send(request: new GetCustomerByIdQuery(id)));
         }
@@ -39,14 +39,14 @@ namespace Mc2.CrudTest.WebApi.Controllers
             return Ok(await _mediator.Send(request: new CreateCustomerCommand(CustomerDto: customerDto)));
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, CustomerDto customerDto)
+        public async Task<IActionResult> Update(Guid id, CustomerDto customerDto)
         {
             customerDto.Id = id;
             return Ok(await _mediator.Send(request: new UpdateCustomerCommand(CustomerDto: customerDto)));
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _mediator.Publish(new CreateCustomerEvent(id: id));
             return Ok(await _mediator.Send(request: new DeleteCustomerCommand(Id: id)));

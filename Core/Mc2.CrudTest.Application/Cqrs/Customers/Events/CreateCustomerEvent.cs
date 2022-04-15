@@ -5,8 +5,8 @@ namespace Mc2.CrudTest.Application.Cqrs.Customers.Events
 {
     public class CreateCustomerEvent : INotification
     {
-        public int Id { get; set; }
-        public CreateCustomerEvent(int id)
+        public Guid Id { get; set; }
+        public CreateCustomerEvent(Guid id)
         {
             this.Id = id;
         }

@@ -19,26 +19,23 @@ namespace Mc2.CrudTest.Persistence.Mapping
             builder.Property(x => x.BankAccountNumber).HasMaxLength(50);
 
             builder.HasData(
-                new Customer()
-                {
-                    Id = 1,
-                    Firstname = "Hamid",
-                    Lastname = "NCH",
-                    Email = "Hamidnch2007@gmail.com",
-                    DateOfBirth = new DateTime(1981, 8, 10),
-                    PhoneNumber = "09124820700",
-                    BankAccountNumber = "123456"
-                },
-            new Customer()
-            {
-                Id = 2,
-                Firstname = "Ali",
-                Lastname = "Razavi",
-                Email = "RazaviAli@gmail.com",
-                DateOfBirth = new DateTime(2001, 5, 5),
-                PhoneNumber = "09123526532",
-                BankAccountNumber = "3251388"
-            });
+                new Customer(
+                    Guid.NewGuid(),
+                    "Hamid",
+                    "NCH",
+                    new DateTime(1981, 8, 10),
+                    "09124820700",
+                    "Hamidnch2007@gmail.com",
+                    "123456"),
+                new Customer(
+                    Guid.NewGuid(),
+                    "Ali",
+                    "Razavi",
+                    new DateTime(2001, 5, 5),
+                    "09123526532",
+                    "RazaviAli@gmail.com",
+                    "3251388")
+                );
         }
     }
 }

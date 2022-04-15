@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using IbanNet;
 using IbanNet.FluentValidation;
+using Mc2.CrudTest.Common.Validators;
 using Mc2.CrudTest.Domain.Entities;
 
 namespace Mc2.CrudTest.WebFramework.Validators
@@ -14,7 +15,7 @@ namespace Mc2.CrudTest.WebFramework.Validators
                 .NotEmpty()
                 .WithMessage("Email must not be empty");
             RuleFor(x => x.Email)
-                .Must(Domain.Validators.EmailValidator.Validate!)
+                .Must(EmailValidator.Validate!)
                 .WithMessage("Email is invalid.");
         }
     }

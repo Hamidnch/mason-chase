@@ -1,4 +1,4 @@
-﻿using Mc2.CrudTest.Domain.Validators;
+﻿using Mc2.CrudTest.Common.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xunit;
 

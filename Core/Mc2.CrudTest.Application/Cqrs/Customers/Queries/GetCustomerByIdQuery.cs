@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
 using Mc2.CrudTest.Application.Cqrs.Customers.Services;
+using Mc2.CrudTest.Domain.Dtos.Customers;
 using MediatR;
 
 namespace Mc2.CrudTest.Application.Cqrs.Customers.Queries
 {
-    public record GetCustomerByIdQuery(int Id) : IRequest<CustomerDto>
+    public record GetCustomerByIdQuery(Guid Id) : IRequest<CustomerDto>
     {
         public class GetCustomerByIdQueryHandler : IRequestHandler<GetCustomerByIdQuery, CustomerDto>
         {

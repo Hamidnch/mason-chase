@@ -1,12 +1,12 @@
-﻿using Mc2.CrudTest.Common.Helpers;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using System.Text.RegularExpressions;
+using Mc2.CrudTest.Common.Helpers;
 
-namespace Mc2.CrudTest.Domain.Validators
+namespace Mc2.CrudTest.Common.Validators
 {
     public static class EmailValidator
     {
-        public static bool Validate(string email)
+        public static bool Validate(string? email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;

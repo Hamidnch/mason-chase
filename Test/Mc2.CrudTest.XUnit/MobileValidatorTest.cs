@@ -1,4 +1,4 @@
-using Mc2.CrudTest.Domain.Validators;
+using Mc2.CrudTest.Common.Validators;
 using Xunit;
 
 namespace Mc2.CrudTest.XUnit
@@ -19,5 +19,5 @@ namespace Mc2.CrudTest.XUnit
             //Assert.Equals(expectedResult, testResult);
         }
     }
-    
+
 }

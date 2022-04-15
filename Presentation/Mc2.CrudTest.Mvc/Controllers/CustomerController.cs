@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Mc2.CrudTest.Application.Cqrs.Customers.Commands;
-using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
 using Mc2.CrudTest.Application.Cqrs.Customers.Events;
 using Mc2.CrudTest.Application.Cqrs.Customers.Queries;
+using Mc2.CrudTest.Domain.Dtos.Customers;
 using Mc2.CrudTest.WebFramework.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -43,7 +43,7 @@ namespace Mc2.CrudTest.Mvc.Controllers
 
             return View(model);
         }
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
             CustomerDto customerDto = await _mediator.Send(new GetCustomerByIdQuery(id));
             CustomerModel model = _mapper.Map<CustomerDto, CustomerModel>(customerDto);
@@ -74,7 +74,7 @@ namespace Mc2.CrudTest.Mvc.Controllers
             return View(customerModel);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             CustomerDto customerDto = await _mediator.Send(new GetCustomerByIdQuery(id));
             CustomerModel? customerModel = _mapper.Map<CustomerDto, CustomerModel>(customerDto);
@@ -83,13 +83,13 @@ namespace Mc2.CrudTest.Mvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CustomerModel customerModel)
+        public async Task<IActionResult> Edit(Guid id, CustomerModel customerModel)
         {
             if (id != customerModel.Id)
             {
                 return BadRequest();
             }
-            
+
             CustomerDto? customerDto = _mapper.Map<CustomerModel, CustomerDto>(customerModel);
             try
             {
@@ -107,7 +107,7 @@ namespace Mc2.CrudTest.Mvc.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {

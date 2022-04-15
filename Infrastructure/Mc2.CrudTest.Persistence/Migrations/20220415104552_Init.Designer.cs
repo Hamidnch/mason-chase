@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mc2.CrudTest.Persistence.Migrations
 {
     [DbContext(typeof(Mc2Context))]
-    [Migration("20220404052345_Init")]
+    [Migration("20220415104552_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,14 +26,13 @@ namespace Mc2.CrudTest.Persistence.Migrations
 
             modelBuilder.Entity("Mc2.CrudTest.Domain.Entities.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BankAccountNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -51,9 +50,8 @@ namespace Mc2.CrudTest.Persistence.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                    b.Property<decimal?>("PhoneNumber")
+                        .HasColumnType("decimal(20,0)");
 
                     b.HasKey("Id");
 
@@ -70,23 +68,23 @@ namespace Mc2.CrudTest.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = new Guid("a3d91ba2-e1a0-4134-badf-d5fb304fd990"),
                             BankAccountNumber = "123456",
                             DateOfBirth = new DateTime(1981, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Hamidnch2007@gmail.com",
                             Firstname = "Hamid",
                             Lastname = "NCH",
-                            PhoneNumber = "09124820700"
+                            PhoneNumber = 9124820700m
                         },
                         new
                         {
-                            Id = 2,
+                            Id = new Guid("a43371d0-00a4-4320-9e1d-f19ea81fc651"),
                             BankAccountNumber = "3251388",
                             DateOfBirth = new DateTime(2001, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "RazaviAli@gmail.com",
                             Firstname = "Ali",
                             Lastname = "Razavi",
-                            PhoneNumber = "09123526532"
+                            PhoneNumber = 9123526532m
                         });
                 });
 #pragma warning restore 612, 618

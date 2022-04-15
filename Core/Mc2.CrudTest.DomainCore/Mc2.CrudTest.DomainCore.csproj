@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <!--<PackageReference Include="IbanNet" Version="5.4.0" />
-    <PackageReference Include="IbanNet.FluentValidation" Version="5.4.0" />-->
     <PackageReference Include="NetDevPack" Version="6.0.1" />
-  </ItemGroup>
-
-	<ItemGroup>
-    <ProjectReference Include="..\Mc2.CrudTest.Common\Mc2.CrudTest.Common.csproj" />
   </ItemGroup>
 
 </Project>

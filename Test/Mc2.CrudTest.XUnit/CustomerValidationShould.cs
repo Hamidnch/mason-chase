@@ -1,4 +1,5 @@
-﻿using FluentValidation.TestHelper;
+﻿using System;
+using FluentValidation.TestHelper;
 using IbanNet;
 using Mc2.CrudTest.Domain.Entities;
 using Mc2.CrudTest.WebFramework.Validators;
@@ -19,12 +20,12 @@ namespace Mc2.CrudTest.XUnit
         [Fact]
         public async Task BankAccountNumberValidationAsync()
         {
-            Customer customer = new Customer
-            {
-                PhoneNumber = "09124820700",
-                Email = "hamidnch2007@gmail.com",
-                BankAccountNumber = "12564646"
-            };
+            Customer customer = new Customer(
+                Guid.NewGuid(),
+                "Hamid", "NCH",
+                new DateTime(1981, 8, 10),
+                "09124820700", "hamidnch2007@gmail.com", "123676446");
+
             TestValidationResult<Customer>? result = await Validator.TestValidateAsync(customer);
 
             result.ShouldNotHaveValidationErrorFor(c => c.BankAccountNumber);
@@ -33,12 +34,12 @@ namespace Mc2.CrudTest.XUnit
         [Fact]
         public async Task EmailValidationAsync()
         {
-            Customer customer = new Customer
-            {
-                PhoneNumber = "09124820700",
-                Email = "hamidnch2007@gmail.com",
-                BankAccountNumber = "12564646"
-            };
+            Customer customer = new Customer(
+                Guid.NewGuid(),
+                "Hamid", "NCH",
+                new DateTime(1981, 8, 10),
+                "09124820700", "hamidnch2007@gmail.com", "123676446");
+
             TestValidationResult<Customer>? result = await Validator.TestValidateAsync(customer);
 
             result.ShouldNotHaveValidationErrorFor(c => c.Email);

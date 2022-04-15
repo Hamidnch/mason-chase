@@ -13,14 +13,13 @@ namespace Mc2.CrudTest.Persistence.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Firstname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    PhoneNumber = table.Column<decimal>(type: "decimal(20,0)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    BankAccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    BankAccountNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,12 +29,12 @@ namespace Mc2.CrudTest.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "BankAccountNumber", "DateOfBirth", "Email", "Firstname", "Lastname", "PhoneNumber" },
-                values: new object[] { 1, "123456", new DateTime(1981, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hamidnch2007@gmail.com", "Hamid", "NCH", "09124820700" });
+                values: new object[] { new Guid("a3d91ba2-e1a0-4134-badf-d5fb304fd990"), "123456", new DateTime(1981, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hamidnch2007@gmail.com", "Hamid", "NCH", 9124820700m });
 
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "BankAccountNumber", "DateOfBirth", "Email", "Firstname", "Lastname", "PhoneNumber" },
-                values: new object[] { 2, "3251388", new DateTime(2001, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "RazaviAli@gmail.com", "Ali", "Razavi", "09123526532" });
+                values: new object[] { new Guid("a43371d0-00a4-4320-9e1d-f19ea81fc651"), "3251388", new DateTime(2001, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "RazaviAli@gmail.com", "Ali", "Razavi", 9123526532m });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_Firstname_Lastname_DateOfBirth",

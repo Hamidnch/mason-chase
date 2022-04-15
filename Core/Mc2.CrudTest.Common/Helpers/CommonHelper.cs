@@ -10,9 +10,9 @@ namespace Mc2.CrudTest.Common.Helpers
 
         #region Private Methods
 
-        private static PhoneNumber ParseToPhoneNumber(this string phoneNumber)
+        private static PhoneNumber ParseToPhoneNumber(this string? phoneNumber)
         {
-            return PhoneNumberUtil.Parse(phoneNumber, null);
+            return PhoneNumberUtil.Parse(phoneNumber, "US");
         }
 
         private static bool IsValidMobileType(this PhoneNumber p)
@@ -26,7 +26,7 @@ namespace Mc2.CrudTest.Common.Helpers
 
         #region Public Methods
 
-        public static bool IsValidMobileNumber(this string phoneNumber)
+        public static bool IsValidMobileNumber(this string? phoneNumber)
         {
             PhoneNumber p = phoneNumber.ParseToPhoneNumber();
 
@@ -47,6 +47,11 @@ namespace Mc2.CrudTest.Common.Helpers
             string domainName = idn.GetAscii(match.Groups[2].Value);
 
             return match.Groups[1].Value + domainName;
+        }
+
+        public static bool HaveMinimumAge(DateTime birthDate)
+        {
+            return birthDate <= DateTime.Now.AddYears(-18);
         }
 
         #endregion Public Methods
