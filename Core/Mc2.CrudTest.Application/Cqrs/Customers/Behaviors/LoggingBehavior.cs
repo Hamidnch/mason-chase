@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Reflection;
+using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Mc2.CrudTest.Application.Cqrs.Customers.Behaviors
@@ -18,8 +19,11 @@ namespace Mc2.CrudTest.Application.Cqrs.Customers.Behaviors
         {
             try
             {
+                //pre
                 _logger.LogInformation($"Handling {typeof(TRequest).Name}");
+                //next
                 TResponse response = await next();
+                //post
                 _logger.LogInformation($"Handled {typeof(TResponse).Name}");
 
                 return response;
