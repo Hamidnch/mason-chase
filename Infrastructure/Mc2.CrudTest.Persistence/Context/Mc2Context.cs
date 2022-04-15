@@ -2,6 +2,7 @@
 using Mc2.CrudTest.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using NetDevPack.Messaging;
 
 
 namespace Mc2.CrudTest.Persistence.Context
@@ -25,6 +26,8 @@ namespace Mc2.CrudTest.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<Event>();
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

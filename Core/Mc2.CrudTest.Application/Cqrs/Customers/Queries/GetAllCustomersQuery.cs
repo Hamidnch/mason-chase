@@ -1,6 +1,5 @@
-﻿using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
-using Mc2.CrudTest.Application.Cqrs.Customers.Services;
-using Mc2.CrudTest.Common.Pagination;
+﻿using Mc2.CrudTest.Application.Cqrs.Customers.Services;
+using Mc2.CrudTest.Domain.Dtos.Customers;
 using MediatR;
 
 namespace Mc2.CrudTest.Application.Cqrs.Customers.Queries

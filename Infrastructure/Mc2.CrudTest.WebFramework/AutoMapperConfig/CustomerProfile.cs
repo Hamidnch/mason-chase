@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
+using Mc2.CrudTest.Domain.Dtos.Customers;
 using Mc2.CrudTest.Domain.Entities;
 using Mc2.CrudTest.WebFramework.Models;
 

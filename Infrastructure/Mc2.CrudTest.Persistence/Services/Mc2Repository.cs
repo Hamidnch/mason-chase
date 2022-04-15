@@ -1,11 +1,11 @@
 ﻿using Mc2.CrudTest.Application.Interfaces;
 using Mc2.CrudTest.Common.Pagination;
-using Mc2.CrudTest.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using NetDevPack.Domain;
 
 namespace Mc2.CrudTest.Persistence.Services
 {
-    public sealed class Mc2Repository<T> : IMc2Repository<T> where T : BaseEntity
+    public sealed class Mc2Repository<T> : IMc2Repository<T> where T : Entity
     {
         #region Fields
 
@@ -37,11 +37,12 @@ namespace Mc2.CrudTest.Persistence.Services
             return trackChanges ? await _dbSet.ToListAsync() : await _dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<T?> GetByIdAsync(int? id)
+        public async Task<T?> GetByIdAsync(Guid? id)
         {
-            if (id is null or 0)
+            if (id is null)
                 return null;
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id.Value);      
+
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id.Value);
         }
 
         public async Task<IReadOnlyList<T>> GetPagedAsync(int pageNumber, int pageSize)
@@ -66,7 +67,6 @@ namespace Mc2.CrudTest.Persistence.Services
             try
             {
                 _dbSet.Update(entity);
-
             }
             catch (Exception ex)
             {
@@ -76,11 +76,10 @@ namespace Mc2.CrudTest.Persistence.Services
             {
                 await _dbContext.SaveChangesAsync();
             }
-
         }
         public async Task DeleteAsync(T entity)
         {
-            if(entity == null)
+            if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
 
             _dbSet.Remove(entity);

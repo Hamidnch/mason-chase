@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Mc2.CrudTest.Application.Cqrs.Customers.Dtos;
 using Mc2.CrudTest.Application.Interfaces;
+using Mc2.CrudTest.Domain.Dtos.Customers;
 using Mc2.CrudTest.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,31 +53,31 @@ namespace Mc2.CrudTest.Application.Cqrs.Customers.Services
             return response;
         }
 
-        public async Task<CustomerDto> GetByIdAsync(int id)
+        public async Task<CustomerDto> GetByIdAsync(Guid id)
         {
             return _mapper.Map<CustomerDto>(await _customerRepository.Table.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id));
         }
 
-        public async Task<CustomerDto> CreateAsync(CustomerDto customerDto)
+        public async Task<CustomerDto> CreateAsync(Customer customer)
         {
-            Customer? customer = _mapper.Map<Customer>(customerDto);
+            //Customer? customer = _mapper.Map<Customer>(customerDto);
 
             await _customerRepository.InsertAsync(customer);
 
             return _mapper.Map<CustomerDto>(customer);
         }
 
-        public async Task<CustomerDto> UpdateAsync(CustomerDto customerDto)
+        public async Task<CustomerDto> UpdateAsync(Customer customer)
         {
-            Customer? customer = _mapper.Map<Customer>(customerDto);
+            //Customer? customer = _mapper.Map<Customer>(customerDto);
             await _customerRepository.UpdateAsync(customer);
             return _mapper.Map<CustomerDto>(customer);
         }
 
-        public async Task DeleteAsync(CustomerDto customerDto)
+        public async Task DeleteAsync(Guid customerId)
         {
-            Customer customer = (await _customerRepository.GetByIdAsync(customerDto.Id))!;
+            Customer customer = (await _customerRepository.GetByIdAsync(customerId))!;
             await _customerRepository.DeleteAsync(customer);
         }
     }

@@ -11,7 +11,7 @@ namespace Mc2.CrudTest.WebFramework.Models
         /// Customer identifier
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         /// <summary>
         /// First name of customer
         /// </summary>
@@ -42,11 +42,11 @@ namespace Mc2.CrudTest.WebFramework.Models
         /// </summary>
         [EmailAddress]
         public string? Email { get; set; }
-        
+
         /// <summary>
         /// Bank account number of customer
         /// </summary>
-        [RegularExpression("((\\d{4})-){3}\\d{4}", ErrorMessage = "Invalid account number")]
+        //[RegularExpression("((\\d{4})-){3}\\d{4}", ErrorMessage = "Invalid account number")]
         public string? BankAccountNumber { get; set; }
     }
 }
